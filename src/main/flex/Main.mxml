@@ -2,7 +2,7 @@
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark"
 	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:button="com.rimusdesign.component.button.*"
-	xmlns:layout="com.rimusdesign.component.layout.*"
+	xmlns:layout="com.rimusdesign.component.layout.*" xmlns:component="com.rimusdesign.component.*"
 	currentState="pageOne" backgroundColor="0x161616">
 	
 	<fx:Script>
@@ -34,6 +34,14 @@
 				"http://cache4.asset-cache.net/xc/103630001.jpg?v=1&c=IWSAsset&k=2&d=A7B69CF049AC90053F0176100AD783EF82130C2B6CA14F0B37DB005EC96F8C9A"
 			] );
 			
+			[Bindable]
+			public var textData : ArrayCollection = new ArrayCollection ();
+
+
+			private function onSend ( ) : void {
+				textData.addItem ( commentBox.message );
+			}
+			
 			
 		]]>
 	</fx:Script>
@@ -46,7 +54,11 @@
 	<s:VGroup includeIn="pageOne" percentWidth="100" percentHeight="100"
 		verticalAlign="middle" horizontalAlign="center" gap="21">
 		<s:Label text="Everybody loves pretty pictures..." color="0xffffff" fontSize="16"/>
-		<button:IconButton icon="{icon}" click="{currentState='pageTwo';}"/>
+		<button:IconButton icon="{icon}" click="{currentState = 'pageTwo';}"/>
+		<s:HGroup percentWidth="100" percentHeight="50" paddingLeft="20" paddingRight="20" paddingTop="20" paddingBottom="20">
+			<component:Board dataProvider="{textData}"/>
+			<component:CommentBox id="commentBox" percentWidth="100" send="onSend()"/>
+		</s:HGroup>
 	</s:VGroup>
 	<s:VGroup includeIn="pageTwo" percentWidth="100" percentHeight="100"
 		verticalAlign="middle" horizontalAlign="center" paddingBottom="20"

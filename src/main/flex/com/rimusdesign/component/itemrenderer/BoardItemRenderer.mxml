@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx" percentWidth="100"
+	percentHeight="100" autoDrawBackground="false">
+
+	<fx:Declarations>
+		<s:Fade id="fade" target="{itemText}" alphaFrom="0"
+			alphaTo="1" duration="1000"/>
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+
+
+			override public function set data ( value : Object ) : void {
+				
+				super.data = value;
+				itemText.text = String ( value );
+			}
+
+
+			override protected function itemRenderer_rollOutHandler ( event : MouseEvent ) : void {
+			}
+
+
+			override protected function itemRenderer_rollOverHandler ( event : MouseEvent ) : void {
+			}
+			
+			
+		]]>
+	</fx:Script>
+
+
+	<s:BorderContainer id="container" width="200" height="32" borderVisible="true" backgroundColor="0" borderWeight="1" borderColor="0x202020"
+	cornerRadius="10">
+		
+		<s:VGroup percentWidth="100" percentHeight="100" verticalAlign="middle" horizontalAlign="center">
+			<s:Label id="itemText" color="0xFFFFFF" fontSize="16"/>
+		</s:VGroup>
+		
+	</s:BorderContainer>
+
+
+</s:ItemRenderer>

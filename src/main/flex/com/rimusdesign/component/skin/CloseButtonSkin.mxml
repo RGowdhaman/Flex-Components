@@ -13,15 +13,15 @@
 
 			import mx.core.UIComponentCachePolicy;
 
-			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
-			{
-				super.updateDisplayList(unscaledWidth, unscaledHeight);
 
-				var upIcon:Sprite = drawIcon(0x000000);
-				var downIcon:Sprite = drawIcon(0xFFFFFF);
+			override protected function updateDisplayList ( unscaledWidth : Number, unscaledHeight : Number ) : void {
+				super.updateDisplayList ( unscaledWidth, unscaledHeight );
 
-				spriteUp.addChild(upIcon);
-				spriteDown.addChild(downIcon);
+				var upIcon : Sprite = drawIcon ( 0x000000 );
+				var downIcon : Sprite = drawIcon ( 0xFFFFFF );
+
+				spriteUp.addChild ( upIcon );
+				spriteDown.addChild ( downIcon );
 
 				upIcon.x = ( unscaledWidth - upIcon.width ) * 0.5;
 				upIcon.y = ( unscaledHeight - upIcon.height ) * 0.5;
@@ -30,31 +30,31 @@
 				downIcon.y = ( unscaledHeight - downIcon.height ) * 0.5;
 			}
 
-			private function drawIcon(color:uint):Sprite
-			{
-				var iconWidth:Number = 8;
-				var iconHeight:Number = 8;
-				var iconLineSize:Number = 2;
 
-				var sprite:Sprite = new Sprite();
+			private function drawIcon ( color : uint ) : Sprite {
+				var iconWidth : Number = 8;
+				var iconHeight : Number = 8;
+				var iconLineSize : Number = 2;
 
-				sprite.graphics.clear();
+				var sprite : Sprite = new Sprite ();
 
-				sprite.graphics.beginFill(color);
-				sprite.graphics.moveTo(0, 0);
-				sprite.graphics.lineTo(iconLineSize, 0);
-				sprite.graphics.lineTo(iconWidth, iconHeight);
-				sprite.graphics.lineTo(iconWidth - iconLineSize, iconHeight);
-				sprite.graphics.lineTo(0, 0);
-				sprite.graphics.endFill();
+				sprite.graphics.clear ();
 
-				sprite.graphics.beginFill(color);
-				sprite.graphics.moveTo(iconWidth - iconLineSize, 0);
-				sprite.graphics.lineTo(iconWidth, 0);
-				sprite.graphics.lineTo(iconLineSize, iconHeight);
-				sprite.graphics.lineTo(0, iconHeight);
-				sprite.graphics.lineTo(iconWidth - iconLineSize, 0);
-				sprite.graphics.endFill();
+				sprite.graphics.beginFill ( color );
+				sprite.graphics.moveTo ( 0, 0 );
+				sprite.graphics.lineTo ( iconLineSize, 0 );
+				sprite.graphics.lineTo ( iconWidth, iconHeight );
+				sprite.graphics.lineTo ( iconWidth - iconLineSize, iconHeight );
+				sprite.graphics.lineTo ( 0, 0 );
+				sprite.graphics.endFill ();
+
+				sprite.graphics.beginFill ( color );
+				sprite.graphics.moveTo ( iconWidth - iconLineSize, 0 );
+				sprite.graphics.lineTo ( iconWidth, 0 );
+				sprite.graphics.lineTo ( iconLineSize, iconHeight );
+				sprite.graphics.lineTo ( 0, iconHeight );
+				sprite.graphics.lineTo ( iconWidth - iconLineSize, 0 );
+				sprite.graphics.endFill ();
 
 				return sprite;
 			}
