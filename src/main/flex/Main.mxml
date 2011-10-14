@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:button="com.rimusdesign.component.button.*"
+	xmlns:layout="com.rimusdesign.component.layout.*"
+	currentState="pageOne" backgroundColor="0x161616">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+		
+			
+			[Embed(source="../resources/icon.png")]
+            [Bindable]
+            public var icon	: Class;
+			
+			[Bindable]
+			public var data	: ArrayCollection = new ArrayCollection ( [
+				"http://cache4.asset-cache.net/xc/105070516.jpg?v=1&c=IWSAsset&k=2&d=31D8FB54DE31AA5062DE1C24A8A80B095D751536620E79F5ED007E450618DF2C",
+				"http://cache2.asset-cache.net/xc/97843315.jpg?v=1&c=IWSAsset&k=2&d=F5B5107058D53DF5D5C79C3950BE71F88E35DE133BD7211D03587755CE5C3361",
+				"http://cache2.asset-cache.net/xc/BC9873-001.jpg?v=1&c=IWSAsset&k=2&d=F5B5107058D53DF53974BEE9EF9924FE5FCA39C212250A5E6041E26644B36BCEE30A760B0D811297",
+				"http://cache2.asset-cache.net/xc/104317117.jpg?v=1&c=IWSAsset&k=2&d=A7B69CF049AC900501E48C3575C40C75690D90B08D793564BF171000C67823F1",
+				"http://cache4.asset-cache.net/xc/108699385.jpg?v=1&c=IWSAsset&k=2&d=0A57134D6EDBEDF5C752311DC1EB5635B3B2D0870171FAC8FD6342B7FE8F94FA",
+				"http://cache2.asset-cache.net/xc/85471383.jpg?v=1&c=IWSAsset&k=2&d=A7B69CF049AC9005FB3B2C58FDAD0811F50DEDADD0C99F0A5F25D065C63AFE6B",
+				"http://cache3.asset-cache.net/xc/108355920.jpg?v=1&c=IWSAsset&k=2&d=37537F338F336545C39D40653CD1685D96752ACB68442A677D99B0CCC22B2FDA",
+				"http://cache4.asset-cache.net/xc/113219150.jpg?v=1&c=IWSAsset&k=2&d=90029C71EAAB99875D5D5E72C4F13742E9D7EF1A5A01DD2A0C3A7D4935510C7B",
+				"http://cache4.asset-cache.net/xc/sb10064436am-001.jpg?v=1&c=IWSAsset&k=2&d=91F5CCEF208281FDA01C947FD4AE374E58F9412BEA0E80090BF2FE70105E72A4D4B40B3E875A785D",
+				"http://cache3.asset-cache.net/xc/sb10064464am-001.jpg?v=1&c=IWSAsset&k=2&d=91F5CCEF208281FD01153D372201F3D858F9412BEA0E80099CE3E2DB31BC2C7CD4B40B3E875A785D",
+				"http://cache1.asset-cache.net/xc/103910068.jpg?v=1&c=IWSAsset&k=2&d=F5B5107058D53DF53E3FD5C1004179BF0F523F5620294D3BF0594EAAC0F89EE5",
+				"http://cache1.asset-cache.net/xc/AA050193.jpg?v=1&c=IWSAsset&k=2&d=91F5CCEF208281FDCADFE52968030B9146EE9B4278B007C11C198381A53A68FE",
+				"http://cache2.asset-cache.net/xc/200068718-001.jpg?v=1&c=IWSAsset&k=2&d=F5B5107058D53DF577320E2799A8815C68AA8D7545ACA3FDECCA837988B698736529E79887609E4F",
+				"http://cache1.asset-cache.net/xc/103250414.jpg?v=1&c=IWSAsset&k=2&d=5047FA587DE1CADE31EBB0829CFF8617A5711AD7E3FFB1B4DDA87A70B20739BCE30A760B0D811297",
+				"http://cache2.asset-cache.net/xc/102768962.jpg?v=1&c=IWSAsset&k=2&d=F5B5107058D53DF5815B718649B7B6B08D3679A58ADC6F64711A400C0F3AD9F0",
+				"http://cache4.asset-cache.net/xc/103630001.jpg?v=1&c=IWSAsset&k=2&d=A7B69CF049AC90053F0176100AD783EF82130C2B6CA14F0B37DB005EC96F8C9A"
+			] );
+			
+			
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="pageOne"/>
+		<s:State name="pageTwo"/>
+	</s:states>
+	
+	<s:VGroup includeIn="pageOne" percentWidth="100" percentHeight="100"
+		verticalAlign="middle" horizontalAlign="center" gap="21">
+		<s:Label text="Everybody loves pretty pictures..." color="0xffffff" fontSize="16"/>
+		<button:IconButton icon="{icon}" click="{currentState='pageTwo';}"/>
+	</s:VGroup>
+	<s:VGroup includeIn="pageTwo" percentWidth="100" percentHeight="100"
+		verticalAlign="middle" horizontalAlign="center" paddingBottom="20"
+		paddingTop="20" paddingLeft="20" paddingRight="20">
+		<s:HGroup percentWidth="100" horizontalAlign="right">
+			<s:Button skinClass="com.rimusdesign.component.skin.CloseButtonSkin" click="{currentState='pageOne';}"/>
+		</s:HGroup>
+		<s:DataGroup id="dataGroup" dataProvider="{data}" percentWidth="100" percentHeight="100" itemRenderer="mx.controls.Image">
+			<s:layout>
+				<layout:CoverflowLayout selectedIndex="{selectedIndexSlider.value}"/>
+			</s:layout>
+		</s:DataGroup>
+		<s:HSlider id="selectedIndexSlider" value="{Math.round((data.source.length - 1 ) * 0.5)}"
+			minimum="0" maximum="{data.source.length - 1}" percentWidth="100"
+			visible="true"/>
+	</s:VGroup>
+	
+</s:Application>

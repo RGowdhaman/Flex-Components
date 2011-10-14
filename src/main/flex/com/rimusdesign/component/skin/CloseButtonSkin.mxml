@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="15" minHeight="15"
+	maxWidth="30" maxHeight="30" cachePolicy="{UIComponentCachePolicy.AUTO}">
+
+	<fx:Metadata>
+		[HostComponent("spark.components.Button")]
+	</fx:Metadata>
+
+	<fx:Script>
+		<![CDATA[
+
+
+			import mx.core.UIComponentCachePolicy;
+
+			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+			{
+				super.updateDisplayList(unscaledWidth, unscaledHeight);
+
+				var upIcon:Sprite = drawIcon(0x000000);
+				var downIcon:Sprite = drawIcon(0xFFFFFF);
+
+				spriteUp.addChild(upIcon);
+				spriteDown.addChild(downIcon);
+
+				upIcon.x = ( unscaledWidth - upIcon.width ) * 0.5;
+				upIcon.y = ( unscaledHeight - upIcon.height ) * 0.5;
+
+				downIcon.x = ( unscaledWidth - downIcon.width ) * 0.5;
+				downIcon.y = ( unscaledHeight - downIcon.height ) * 0.5;
+			}
+
+			private function drawIcon(color:uint):Sprite
+			{
+				var iconWidth:Number = 8;
+				var iconHeight:Number = 8;
+				var iconLineSize:Number = 2;
+
+				var sprite:Sprite = new Sprite();
+
+				sprite.graphics.clear();
+
+				sprite.graphics.beginFill(color);
+				sprite.graphics.moveTo(0, 0);
+				sprite.graphics.lineTo(iconLineSize, 0);
+				sprite.graphics.lineTo(iconWidth, iconHeight);
+				sprite.graphics.lineTo(iconWidth - iconLineSize, iconHeight);
+				sprite.graphics.lineTo(0, 0);
+				sprite.graphics.endFill();
+
+				sprite.graphics.beginFill(color);
+				sprite.graphics.moveTo(iconWidth - iconLineSize, 0);
+				sprite.graphics.lineTo(iconWidth, 0);
+				sprite.graphics.lineTo(iconLineSize, iconHeight);
+				sprite.graphics.lineTo(0, iconHeight);
+				sprite.graphics.lineTo(iconWidth - iconLineSize, 0);
+				sprite.graphics.endFill();
+
+				return sprite;
+			}
+		]]>
+	</fx:Script>
+
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="down"/>
+		<s:State name="out"/>
+		<s:State name="over"/>
+		<s:State name="disabled"/>
+	</s:states>
+
+	<s:Ellipse left="-15" top="-15" width="60" height="60">
+		<s:fill>
+			<s:SolidColor color="0xff00ff" alpha="0"/>
+		</s:fill>
+	</s:Ellipse>
+	<s:Ellipse percentWidth="100" percentHeight="100">
+		<s:fill.up>
+			<s:LinearGradient rotation="90">
+				<s:entries>
+					<s:GradientEntry color="0xB82727"/>
+					<s:GradientEntry color="0x890000"/>
+				</s:entries>
+			</s:LinearGradient>
+		</s:fill.up>
+		<s:fill.down>
+			<s:LinearGradient rotation="90">
+				<s:entries>
+					<s:GradientEntry color="0x771010"/>
+					<s:GradientEntry color="0x890000"/>
+				</s:entries>
+			</s:LinearGradient>
+		</s:fill.down>
+		<s:fill.out>
+			<s:LinearGradient rotation="90">
+				<s:entries>
+					<s:GradientEntry color="0xB82727"/>
+					<s:GradientEntry color="0x890000"/>
+				</s:entries>
+			</s:LinearGradient>
+		</s:fill.out>
+		<s:fill.over>
+			<s:LinearGradient rotation="90">
+				<s:entries>
+					<s:GradientEntry color="0x771010"/>
+					<s:GradientEntry color="0x890000"/>
+				</s:entries>
+			</s:LinearGradient>
+		</s:fill.over>
+		<s:fill.disabled>
+			<s:LinearGradient rotation="90">
+				<s:entries>
+					<s:GradientEntry color="0x5a5a5a"/>
+					<s:GradientEntry color="0x323232"/>
+				</s:entries>
+			</s:LinearGradient>
+		</s:fill.disabled>
+		<s:filters>
+			<s:GlowFilter alpha="0.8" blurX="21" blurY="21" color="0x000000"/>
+		</s:filters>
+	</s:Ellipse>
+	<s:SpriteVisualElement visible.up="true" visible.out="true"
+		visible.down="false" visible.over="false" id="spriteUp"/>
+	<s:SpriteVisualElement visible.up="false" visible.out="false"
+		visible.down="true" visible.over="true" id="spriteDown"/>
+</s:Skin>
